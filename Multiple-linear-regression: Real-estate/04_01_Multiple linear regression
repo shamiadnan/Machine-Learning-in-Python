@@ -1,0 +1,37 @@
+"""
+In this exercise you will use the real_estate_price_size_year.csv dataset.
+Your task is to use sklearn's capabilities to standardize the features (not the target).
+Print the scaled features as they are.
+
+"""
+
+# 1. Import Necessary Libraries
+# pandas: Used for loading and manipulating the dataset
+import pandas as pd
+# LinearRegression: Imported as part of the standard regression workflow (unused in this scaling step)
+from sklearn.linear_model import LinearRegression
+# StandardScaler: Used to standardize features by removing the mean and scaling to unit variance
+from sklearn.preprocessing import StandardScaler
+
+# 2. Load the Dataset
+# Read the CSV file into a pandas DataFrame
+data = pd.read_csv('real_estate_price_size_year.csv')
+
+# 3. Define Features (x) and Target (y)
+# Select the independent variables ('size' and 'year') as a 2D DataFrame
+x = data[['size', 'year']]
+# Select the dependent target variable ('price') — left unscaled as instructed
+y = data['price']
+
+# 4. Initialize and Fit the Scaler
+# Create an instance of the StandardScaler object
+scaler = StandardScaler()
+# Compute the mean (μ) and standard deviation (σ) for each feature column in x
+scaler.fit(x)
+
+# 5. Transform the Features and Print Output
+# Standardize x using the computed mean and standard deviation: z = (x - μ) / σ
+x_scaled = scaler.transform(x)
+
+# Print the resulting 2D NumPy array of standardized feature values
+print(x_scaled)
